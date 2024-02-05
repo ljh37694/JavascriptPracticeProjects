@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "omyu_pretty";
+}
+
+.wrapper {
+    width: 100%;
+    height: 1000px;
+    background-color: #eee;
+    padding: 1px;
+}
+
+.main-container {
+    width: 24em;
+    height: 38em;
+    border-radius: 10px;
+    background-color: #fff;
+    margin: auto;
+    padding: 1px;
+    margin-top: 50px;
+    border: 1px solid rgb(58, 58, 58);
+    box-shadow: 10px 10px rgba(113, 154, 230, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#todo-input {
+    border-radius: 10px;
+    border: none;
+    background-color: #eee;
+    padding-left: 10px;
+}
+
+.todo-input-container > button {
+    border: 2px solid rgb(113, 154, 230);
+    border-radius: 10px;
+    background-color: #fff;
+    color: rgb(113, 154, 230);
+}
+
+.todo-lists-container {
+    width: 100%;
+    padding: 0px 20px;
+}
+
+.todo-list {
+    margin: 10px 20px;
+}
