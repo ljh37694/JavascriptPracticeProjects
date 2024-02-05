@@ -55,4 +55,12 @@
 
 .todo-list {
     margin: 10px 20px;
+    height: 2em;
+}
+
+.del-btn {
+    background-color: #fff;
+    border: none;
+    width: 2em;
+    height: 2em;
 }
