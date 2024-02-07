@@ -22,7 +22,6 @@
   margin-top: 100px;
   background-color: #fff;
   width: 500px;
-  height: 500px;
   border: 1px solid #eee;
   border-radius: 15px;
   font-family: omyu_pretty;
@@ -39,7 +38,17 @@
   padding: 5px;
 }
 
+.date-row {
+  display: flex;
+  justify-content: center;
+}
+
 .date-row > p {
   width: 14.2857142857%;
   text-align: center;
+}
+
+.date-row:not(:first-child) > p:hover {
+  background-color: rgb(69, 129, 213);
+  border-radius: 50px;
 }/*# sourceMappingURL=style.css.map */

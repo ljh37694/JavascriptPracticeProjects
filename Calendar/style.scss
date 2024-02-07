@@ -25,7 +25,6 @@ $color: #fff;
     margin-top: 100px;
     background-color: $color;
     width: 500px;
-    height: 500px;
     border: 1px solid #eee;
     border-radius: 15px;
     font-family: omyu_pretty;
@@ -43,10 +42,16 @@ $color: #fff;
 }
 
 .date-row {
-    
+    display: flex;
+    justify-content: center;
 }
 
 .date-row > p {
     width: calc(100% / 7);
     text-align: center;
+}
+
+.date-row:not(:first-child) > p:hover {
+    background-color: rgb(69, 129, 213);
+    border-radius: 50px;
 }
