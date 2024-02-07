@@ -29,6 +29,10 @@
   padding: 30px;
 }
 
+.top {
+  font-size: 20px;
+}
+
 #prev-btn, #next-btn {
   background-color: inherit;
   border: none;
