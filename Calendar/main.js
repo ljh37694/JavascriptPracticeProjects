@@ -1,7 +1,10 @@
 function makeDateItem(number, color = "black") {
-    let dateItem = document.createElement("p");
-    dateItem.innerHTML = number;
-    dateItem.style.color = color;
+    let dateItem = document.createElement("div"), content = document.createElement("p");
+    dateItem.className = "date-col";
+    content.innerHTML = number;
+    content.style.color = color;
+
+    dateItem.appendChild(content);
 
     return dateItem;
 }
@@ -33,11 +36,11 @@ function makeCurCalendar(date) { // date-row가 7개 담긴 Array return
         let dayItem = makeDateItem(d);
 
         if (d == "일") {
-            dayItem.style.color = "red";
+            dayItem.firstChild.style.color = "red";
         }
 
         else if (d == "토") {
-            dayItem.style.color = "blue";
+            dayItem.firstChild.style.color = "blue";
         }
 
         calendar[0].appendChild(dayItem);
@@ -56,7 +59,7 @@ function makeCurCalendar(date) { // date-row가 7개 담긴 Array return
         let dateItem = makeDateItem(d);
 
         if (d == curDate.getDate()) {
-            dateItem.style.backgroundColor = "rgb(69, 129, 213)";
+            dateItem.firstChild.style.backgroundColor = "rgb(69, 129, 213)";
         }
 
         calendar[parseInt(start / 7 + 1)].appendChild(dateItem);

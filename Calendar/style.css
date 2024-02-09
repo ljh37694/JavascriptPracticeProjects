@@ -23,7 +23,7 @@
   margin-top: 100px;
   background-color: #fff;
   width: 500px;
-  height: 410px;
+  height: 450px;
   border: 1px solid #eee;
   border-radius: 15px;
   font-family: omyu_pretty;
@@ -47,13 +47,24 @@
   justify-content: center;
 }
 
-.date-row > p {
+.date-col {
   width: 14.2857142857%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.date-col p {
+  width: 2em;
+  height: 2em;
   border-radius: 50px;
+  text-align: center;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.date-row:not(:first-child) > p:hover {
+.date-row:not(:first-child) > .date-col > p:hover {
   background-color: rgb(69, 129, 213);
   border-radius: 50px;
 }
