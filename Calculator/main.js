@@ -38,8 +38,19 @@ let calcBtnData = [
     ],
 ];
 
-let calcBtnContainer = $(".calc-btn-container");
-let result = $("#result");
+// global variable
+const calcBtnContainer = $(".calc-btn-container");
+const result = $("#result");
+let existPoint = false, clickedOperator = false;
+let accumulator = 0;
+let operator = "";
+const DIV = 10000000000.0;
+const init = function() {
+    $("#result").text("0");
+    existPoint = false;
+    accumulator = 0;
+    operator = "";
+}
 
 calcBtnData.forEach((rowData) => {
     let btnRow = document.createElement("div");
@@ -65,8 +76,13 @@ calcBtnData.forEach((rowData) => {
 $(".number").click((e) => {
     let num = e.currentTarget.textContent;
 
+    if (clickedOperator) {
+        result.text("0");
+        clickedOperator = false;
+    }
+
     if (result.text().length < 12) {
-        result.text((result.text() == "0" ? "" : result.text()) + num);
+        result.text((result.text() == 0 ? "" : result.text()) + num);
     }
 });
 
@@ -75,7 +91,8 @@ $(".func").click((e) => {
     let num = result.text();
 
     if (f == "AC") {
-        result.text("0");
+        init();
+
     }
 
     else if (f == "+/-") {
@@ -88,5 +105,43 @@ $(".func").click((e) => {
         if (result.text() == "") {
             result.text("0");
         }
+    }
+});
+
+$(".point").click(function() {
+    if (existPoint === false) {
+        result.text(result.text() + ".");
+        existPoint = true;
+    }
+});
+
+$(".operator").click(function() {
+    let oper = this.textContent;
+    accumulator = parseFloat(result.text());
+
+    operator = oper;
+    clickedOperator = true;
+});
+
+$(".equal").click(function() {
+    let curNum = parseFloat(result.text());
+
+    if (operator) {
+        switch (operator) {
+            case "÷":
+                accumulator /= curNum;
+                break;
+            case "x":
+                accumulator *= curNum;
+                break;
+            case "-":
+                accumulator -= curNum;
+                break;
+            case "+":
+                accumulator += curNum;
+                break;
+        }
+
+        result.text(parseFloat(accumulator.toFixed(11)));
     }
 });
