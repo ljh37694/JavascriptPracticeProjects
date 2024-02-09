@@ -15,17 +15,21 @@
   height: 100vh;
   background-color: #eee;
   padding: 1px;
+  position: relative;
 }
 
-.main-container {
+.main-container, .years-container {
   margin: auto;
   margin-top: 100px;
   background-color: #fff;
   width: 500px;
+  height: 410px;
   border: 1px solid #eee;
   border-radius: 15px;
   font-family: omyu_pretty;
   padding: 30px;
+  position: absolute;
+  left: calc(50% - 250px);
 }
 
 .top {
@@ -46,9 +50,45 @@
 .date-row > p {
   width: 14.2857142857%;
   text-align: center;
+  border-radius: 50px;
 }
 
 .date-row:not(:first-child) > p:hover {
   background-color: rgb(69, 129, 213);
   border-radius: 50px;
+}
+
+#date-title {
+  border: none;
+  background-color: inherit;
+}
+
+.month-container {
+  font-size: 30px;
+  text-align: center;
+}
+
+.years-container {
+  visibility: hidden;
+}
+
+#year-title {
+  font-size: 36px;
+  padding-left: 30px;
+}
+
+#up-btn, #down-btn {
+  border: none;
+  background-color: inherit;
+}
+
+.month-btn {
+  border: none;
+  width: 2em;
+  height: 2em;
+  background-color: inherit;
+}
+
+.month-btn:hover {
+  background-color: rgb(69, 129, 213);
 }/*# sourceMappingURL=style.css.map */

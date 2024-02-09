@@ -30,8 +30,7 @@ function makeCurCalendar(date) { // date-row가 7개 담긴 Array return
     
     // 첫 줄에 요일 추가
     days.forEach(d => {
-        let dayItem = document.createElement("p");
-        dayItem.innerHTML = d;
+        let dayItem = makeDateItem(d);
 
         if (d == "일") {
             dayItem.style.color = "red";
@@ -56,6 +55,10 @@ function makeCurCalendar(date) { // date-row가 7개 담긴 Array return
     for (let d = 1; d <= monthDateCnt[date.getMonth()]; start++, d++) {
         let dateItem = makeDateItem(d);
 
+        if (d == curDate.getDate()) {
+            dateItem.style.backgroundColor = "rgb(69, 129, 213)";
+        }
+
         calendar[parseInt(start / 7 + 1)].appendChild(dateItem);
     }
 
@@ -71,6 +74,8 @@ function makeCurCalendar(date) { // date-row가 7개 담긴 Array return
 
 // date-container에 date 캘린더 넣기
 function setCalendar(date) {
+    setDateTitle(date);
+
     $(".date-container").html("");
 
     makeCurCalendar(date).forEach((dateRow, idx) => {
@@ -82,10 +87,42 @@ function setDateTitle(date) {
     $("#date-title").html(`${date.getFullYear()}년 ${date.getMonth() + 1}월`);
 }
 
-let date = new Date();
+function makeMonthTable(year) {
+    let monthContainer = $(".month-container");
+    monthContainer.html("");
+    $("#year-title").text(`${year}년`);
 
-setDateTitle(date);
+    for (let i = 0; i < 4; i++) {
+        let row = document.createElement("div");
+        row.className = "row";
+
+        for (let j = 1; j <= 3; j++) {
+            let col = document.createElement("div"), btn = document.createElement("button");
+            let curMonth = i * 3 + j;
+            col.className = "col-4", btn.className = "month-btn";
+            btn.innerHTML = curMonth;
+
+            if (year === curDate.getFullYear() && curMonth - 1 == curDate.getMonth()) {
+                btn.style.backgroundColor = "rgb(69, 129, 213)";
+            }
+
+            col.appendChild(btn);
+            row.appendChild(col);
+        }
+
+        monthContainer.append(row);
+    }
+}
+
+let date = new Date();
+const curDate = new Date();
+
 setCalendar(date);
+makeMonthTable(date.getFullYear());
+
+$("#date-title").click(() => {
+    $(".years-container").css("visibility", "visible");
+});
 
 $("#prev-btn").click(() => {
     let prevMonth = date.getMonth() - 1;
@@ -101,4 +138,28 @@ $("#next-btn").click(() => {
     
     setDateTitle(date);
     setCalendar(date);
+});
+
+let yearTitle = $("#year-title");
+$("#up-btn").click(() => {
+    yearTitle.text(`${parseInt(yearTitle.text()) + 1}년`);
+    makeMonthTable(parseInt(yearTitle.text()));
+});
+
+$("#down-btn").click(() => {
+    yearTitle.text(`${parseInt(yearTitle.text()) - 1}년`);
+    makeMonthTable(parseInt(yearTitle.text()));
+});
+
+$(".month-container").click(function(e) {
+    let cur = e.target;
+
+    if (cur.className === "month-btn") {
+        date.setFullYear(parseInt(yearTitle.text()));
+        date.setMonth(parseInt(cur.textContent) - 1);
+
+        setCalendar(date);
+
+        $(".years-container").css("visibility", "hidden");
+    }
 });
