@@ -58,7 +58,7 @@ function makeCurCalendar(date) { // date-row가 7개 담긴 Array return
     for (let d = 1; d <= monthDateCnt[date.getMonth()]; start++, d++) {
         let dateItem = makeDateItem(d);
 
-        if (d == curDate.getDate()) {
+        if (d == curDate.getDate() && month == curDate.getMonth() && year == curDate.getFullYear()) {
             dateItem.firstChild.style.backgroundColor = "rgb(69, 129, 213)";
         }
 
